@@ -6,19 +6,21 @@ job         :
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : prettify      # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : [bootstrap]   # {mathjax, quiz, bootstrap}
+widgets     : []   # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
 ## Description
 
-1. Simple time series exploration
-2. Using __dygraphs__ package
-3. An example of time series decomposition using __loess__
-4. Forecasting of time series
+We explore simple time series decomposition and forecasting. The chief features of the app
 
-The shiny app is running [here](https://abysmon.shinyapps.io/AirPassenger/)
+  * We use `dygraphs` package for interactive charting 
+  * An example of time series decomposition using `loess`
+  * Forecasting of time series using `Holt-Winters Filtering`
+
+The app is running [shiny server](https://abysmon.shinyapps.io/AirPassenger/).
+Sourcecode is on [github](https://github.com/abysmon/devDataProd/).
 
 --- .class #id 
 
@@ -33,16 +35,26 @@ Summary
   104.0   180.0   265.5   280.3   360.5   622.0 
 ```
 
+![plot of chunk f](assets/fig/f-1.png) 
+
 
 --- .class #id 
 
 ## What do we do
 
-1. We split the dataset into seasonal component and the trend line
-2. Then we forecast it from 6 months ahead to 60 months ahead, prediction interval is user controlled input
+We split the dataset into seasonal component and the trend line
 
+![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1-1.png) 
 
+--- .class #id 
 
+## What do we do (contd..)
+Then we forecast it from upto 60 months ahead with two user controlled input
+  *  Forecast ahead months
+  *  Prediction bounds
+
+**The predicted data and measured data are shown below**
+![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2-1.png) 
 
 
 

@@ -6,19 +6,21 @@ job         :
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : prettify      # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : [bootstrap]   # {mathjax, quiz, bootstrap}
+widgets     : []   # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
 ## Description
 
-1. Simple time series exploration
-2. Using __dygraphs__ package
-3. An example of time series decomposition using __loess__
-4. Forecasting of time series
+We explore simple time series decomposition and forecasting. The chief features of the app
 
-The shiny app is running [here](https://abysmon.shinyapps.io/AirPassenger/)
+  * We use `dygraphs` package for interactive charting 
+  * An example of time series decomposition using `loess`
+  * Forecasting of time series using `Holt-Winters Filtering`
+
+The app is running [shiny server](https://abysmon.shinyapps.io/AirPassenger/).
+Sourcecode is on [github](https://github.com/abysmon/devDataProd/).
 
 --- .class #id 
 
@@ -27,8 +29,10 @@ The shiny app is running [here](https://abysmon.shinyapps.io/AirPassenger/)
 `AirPassengers` is contains monthly international airline passengers, in thousands, from 1949 to 1960. 
 
 Summary
-```{r, echo=FALSE,comment=NA}
+```{r, echo=FALSE,comment=NA, fig.width=6, fig.height=4,f}
 summary(AirPassengers)
+par(mar = c(4,4,1.5,1))
+plot(AirPassengers, main = 'Monthly international airline passengers', col = 'gold2', lwd = 2, ylab = 'Passengers (Thousands)')
 ```
 
 
@@ -36,11 +40,28 @@ summary(AirPassengers)
 
 ## What do we do
 
-1. We split the dataset into seasonal component and the trend line
-2. Then we forecast it from 6 months ahead to 60 months ahead, prediction interval is user controlled input
+We split the dataset into seasonal component and the trend line
 
+```{r, echo=FALSE,comment=NA, fig.width=13, fig.height=5}
+ap.comp = stl(AirPassengers, s.window = 'periodic')
 
+par(mfrow = c(1,3))
+plot(ap.comp$time.series[,2], main = 'Trend line', col = 'cornflowerblue', lwd = 3, ylab = '')
+plot(ap.comp$time.series[,1], main = 'Seasonal Component', col = 'coral', ylab = '')
+plot(ap.comp$time.series[,3], main = 'Irregular Component', col = 'cyan4', ylab = '')
+```
 
+--- .class #id 
+
+## What do we do (contd..)
+Then we forecast it from upto 60 months ahead with two user controlled input
+  *  Forecast ahead months
+  *  Prediction bounds
+
+**The predicted data and measured data are shown below**
+```{r, echo=FALSE,comment=NA, fig.width=5, fig.height=4}
+plot(forecast::hw(AirPassengers, 12), col ='turquoise3', lwd = 2)
+```
 
 
 

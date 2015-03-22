@@ -13,9 +13,7 @@
     media="only screen and (max-device-width: 480px)" >
   <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
   <link rel="stylesheet" href="libraries/highlighters/prettify/css/tomorrow.css" />
-  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
-<link rel=stylesheet href="./assets/css/ribbons.css"></link>
-
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
   
   <!-- Grab CDN jQuery, fall back to local if offline -->
   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
@@ -47,14 +45,16 @@
     <h2>Description</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Simple time series exploration</li>
-<li>Using <strong>dygraphs</strong> package</li>
-<li>An example of time series decomposition using <strong>loess</strong></li>
-<li>Forecasting of time series</li>
-</ol>
+    <p>We explore simple time series decomposition and forecasting. The chief features of the app</p>
 
-<p>The shiny app is running <a href="https://abysmon.shinyapps.io/AirPassenger/">here</a></p>
+<ul>
+<li>We use <code>dygraphs</code> package for interactive charting </li>
+<li>An example of time series decomposition using <code>loess</code></li>
+<li>Forecasting of time series using <code>Holt-Winters Filtering</code></li>
+</ul>
+
+<p>The app is running <a href="https://abysmon.shinyapps.io/AirPassenger/">shiny server</a>.
+Sourcecode is on <a href="https://github.com/abysmon/devDataProd/">github</a>.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -73,6 +73,8 @@
   104.0   180.0   265.5   280.3   360.5   622.0 
 </code></pre>
 
+<p><img src="assets/fig/f-1.png" alt="plot of chunk f"> </p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -82,10 +84,28 @@
     <h2>What do we do</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>We split the dataset into seasonal component and the trend line</li>
-<li>Then we forecast it from 6 months ahead to 60 months ahead, prediction interval is user controlled input</li>
-</ol>
+    <p>We split the dataset into seasonal component and the trend line</p>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do we do (contd..)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Then we forecast it from upto 60 months ahead with two user controlled input</p>
+
+<ul>
+<li> Forecast ahead months</li>
+<li> Prediction bounds</li>
+</ul>
+
+<p><strong>The predicted data and measured data are shown below</strong>
+<img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
 
   </article>
   <!-- Presenter Notes -->
@@ -113,6 +133,12 @@
          3
       </a>
     </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='What do we do (contd..)'>
+         4
+      </a>
+    </li>
   </ul>
   </div>  <!--[if IE]>
     <script 
@@ -122,15 +148,7 @@
   <![endif]-->
 </body>
   <!-- Load Javascripts for Widgets -->
-  <script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
-<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
-
-  <script>  
-  $(function (){ 
-    $("#example").popover(); 
-    $("[rel='tooltip']").tooltip(); 
-  });  
-  </script>  
+  
   <!-- Google Prettify -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
   <script src='libraries/highlighters/prettify/js/lang-r.js'></script>
